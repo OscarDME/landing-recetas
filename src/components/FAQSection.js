@@ -102,7 +102,7 @@ const FAQSection = () => {
 
         {/* Final CTA */}
         <div className="text-center mt-12">
-          <button className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg md:text-xl px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-200">
+          <button className="bg-green-600 hover:bg-emerald-700 text-white font-bold text-lg md:text-xl px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-200">
             ¡QUIERO LAS RECETAS AHORA!
           </button>
         </div>

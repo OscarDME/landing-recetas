@@ -1,6 +1,6 @@
 const FinalCTASection = () => {
   return (
-    <section className="bg-emerald-700 py-16 md:py-20">
+    <section className="bg-green-600 py-16 md:py-20">
       <div className="container mx-auto px-4 max-w-lg">
         {/* Card Container */}
         <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-8 shadow-2xl">
@@ -56,7 +56,7 @@ const FinalCTASection = () => {
 
           {/* CTA Button */}
           <div className="text-center mb-4">
-            <button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xl py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200">
+            <button className="w-full bg-green-500 hover:bg-emerald-700 text-white font-bold text-xl py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200">
               COMPRAR AHORA!
             </button>
           </div>

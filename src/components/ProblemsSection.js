@@ -8,7 +8,7 @@ const ProblemsSection = () => {
   ]
 
   return (
-    <section className="bg-emerald-700 py-8 md:py-10">
+    <section className="bg-green-600 py-8 md:py-10">
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 lg:gap-12">
           {/* Title */}

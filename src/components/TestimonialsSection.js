@@ -1,6 +1,6 @@
 const TestimonialsSection = () => {
   return (
-    <section className="bg-emerald-700 py-12 md:py-16">
+    <section className="bg-green-600 py-12 md:py-16">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Header */}
         <div className="mb-10">

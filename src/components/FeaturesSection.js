@@ -31,14 +31,14 @@ const FeaturesSection = () => {
   ]
 
   return (
-    <section className="bg-gradient-to-br from-emerald-600 to-emerald-700 py-12 md:py-16">
+    <section className="bg-green-600 py-12 md:py-16">
       <div className="container mx-auto px-4 max-w-3xl">
         {/* Header */}
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
             LO QUE USTED
           </h2>
-          <h3 className="text-2xl md:text-3xl font-bold text-emerald-100">
+          <h3 className="text-2xl md:text-3xl font-bold text-green-100">
             VA A ENCONTRAR:
           </h3>
         </div>
@@ -46,14 +46,14 @@ const FeaturesSection = () => {
         {/* Features List */}
         <div className="space-y-4 mb-8">
           {features.map((feature, index) => (
-            <div 
+            <div
               key={index}
-              className="flex items-center gap-3 text-white bg-white/5 rounded-lg p-3 backdrop-blur-sm"
+              className="flex items-center gap-3 text-white bg-white/10 rounded-lg p-3 backdrop-blur-sm hover:bg-white/15 transition-colors duration-200"
             >
-              <span className="text-xl md:text-2xl flex-shrink-0 bg-white/15 w-10 h-10 rounded-full flex items-center justify-center">
+              <span className="text-xl md:text-2xl flex-shrink-0 bg-white/20 w-10 h-10 rounded-full flex items-center justify-center">
                 {feature.icon}
               </span>
-              <p className="text-base md:text-lg font-medium text-emerald-50">
+              <p className="text-base md:text-lg font-medium text-white">
                 {feature.text}
               </p>
             </div>
@@ -62,8 +62,8 @@ const FeaturesSection = () => {
 
         {/* CTA Button */}
         <div className="text-center">
-          <button className="bg-white text-emerald-700 font-bold text-base md:text-lg px-8 py-3 rounded-full shadow-lg hover:shadow-xl hover:bg-emerald-50 transition-all duration-200">
-            ¡QUIERO LAS RECETAS!
+          <button className="bg-white text-green-600 font-bold text-base md:text-lg px-8 py-4 rounded-full shadow-xl hover:shadow-2xl hover:bg-green-50 transition-all duration-300">
+            🍳 ¡QUIERO LAS RECETAS!
           </button>
         </div>
       </div>

@@ -1,8 +1,15 @@
+import { motion } from 'framer-motion'
+import { useState } from 'react'
+import Image from 'next/image'
+
 const RecipesPreviewSection = () => {
+  const [imageErrors, setImageErrors] = useState({})
+
   const recipes = [
     {
       id: 1,
-      image: "/images/recipe-cafe-frigideira.jpg",
+      image: "/images/breakfast-12.webp",
+      fallbacks: ["/images/breakfast-12.png", "/images/breakfast-12.jpg"],
       title: "CAFÉ DE FRIGIDEIRA",
       subtitle: "COM OVOS E FRIOS",
       time: "10 MINUTOS",
@@ -12,7 +19,8 @@ const RecipesPreviewSection = () => {
     },
     {
       id: 2,
-      image: "/images/recipe-pizza-rapida.jpg",
+      image: "/images/breakfast-3.webp",
+      fallbacks: ["/images/breakfast-3.png", "/images/breakfast-3.jpg"],
       title: "PIZZA RÁPIDA",
       subtitle: "DE FRIGIDEIRA",
       time: "8 MINUTOS",
@@ -22,7 +30,8 @@ const RecipesPreviewSection = () => {
     },
     {
       id: 3,
-      image: "/images/recipe-panqueca-fit.jpg",
+      image: "/images/breakfast-9.webp",
+      fallbacks: ["/images/breakfast-9.png", "/images/breakfast-9.jpg"],
       title: "PANQUECA FIT",
       subtitle: "DE BANANA",
       time: "5 MINUTOS",
@@ -32,7 +41,8 @@ const RecipesPreviewSection = () => {
     },
     {
       id: 4,
-      image: "/images/recipe-omelete-frios.jpg",
+      image: "/images/breakfast-11.webp",
+      fallbacks: ["/images/breakfast-11.png", "/images/breakfast-11.jpg"],
       title: "OMELETE DE FRIOS",
       subtitle: "TOSTADA",
       time: "7 MINUTOS",
@@ -42,7 +52,8 @@ const RecipesPreviewSection = () => {
     },
     {
       id: 5,
-      image: "/images/recipe-smoothie-bowl.jpg",
+      image: "/images/breakfast-2.webp",
+      fallbacks: ["/images/breakfast-2.png", "/images/breakfast-2.jpg"],
       title: "SMOOTHIE BOWL",
       subtitle: "PROTEICO",
       time: "3 MINUTOS",
@@ -51,6 +62,52 @@ const RecipesPreviewSection = () => {
       bgColor: "from-pink-100 to-purple-100"
     }
   ]
+
+  // Componente de imagen con fallbacks para recetas
+  const RobustRecipeImage = ({ recipe, className = "" }) => {
+    const [currentSrc, setCurrentSrc] = useState(recipe.image)
+    const [fallbackIndex, setFallbackIndex] = useState(0)
+    const [hasError, setHasError] = useState(false)
+
+    const handleError = () => {
+      console.warn(`Error loading recipe image: ${currentSrc}`)
+      
+      // Intentar con el siguiente fallback
+      if (fallbackIndex < recipe.fallbacks.length) {
+        const nextSrc = recipe.fallbacks[fallbackIndex]
+        setCurrentSrc(nextSrc)
+        setFallbackIndex(prev => prev + 1)
+      } else {
+        // Ya no hay más fallbacks, mostrar placeholder
+        setHasError(true)
+        setImageErrors(prev => ({
+          ...prev,
+          [recipe.id]: true
+        }))
+      }
+    }
+
+    if (hasError || imageErrors[recipe.id]) {
+      return (
+        <div className={`w-full h-full bg-gradient-to-br ${recipe.bgColor} flex items-center justify-center ${className}`}>
+          <span className="text-4xl md:text-5xl">{recipe.placeholder}</span>
+        </div>
+      )
+    }
+
+    return (
+      <Image
+        src={currentSrc}
+        alt={`${recipe.title} - ${recipe.subtitle}`}
+        fill
+        className={`object-cover ${className}`}
+        onError={handleError}
+        onLoad={() => console.log(`✅ Loaded recipe image: ${currentSrc}`)}
+        quality={85}
+        sizes="(max-width: 768px) 100vw, 256px"
+      />
+    )
+  }
 
   return (
     <section className="bg-gradient-to-br from-amber-50 py-12 md:py-16">
@@ -67,16 +124,25 @@ const RecipesPreviewSection = () => {
 
         {/* Recipes Grid */}
         <div className="space-y-6 mb-10">
-          {recipes.map((recipe) => (
-            <div 
+          {recipes.map((recipe, index) => (
+            <motion.div 
               key={recipe.id}
-              className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden"
+              className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ scale: 1.01, y: -2 }}
             >
               <div className="flex flex-col md:flex-row">
-                {/* Image */}
-                <div className="md:w-64 h-48 md:h-32 bg-gradient-to-br relative overflow-hidden">
-                  <div className={`w-full h-full bg-gradient-to-br ${recipe.bgColor} flex items-center justify-center`}>
-                    <span className="text-4xl md:text-5xl">{recipe.placeholder}</span>
+                {/* Image Container */}
+                <div className="md:w-64 h-48 md:h-32 relative overflow-hidden">
+                  <RobustRecipeImage recipe={recipe} />
+                  
+                  {/* Overlay con información adicional */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute bottom-2 left-2 text-white">
+                      <p className="text-xs font-medium">Receta #{recipe.id}</p>
+                    </div>
                   </div>
                 </div>
                 
@@ -98,16 +164,74 @@ const RecipesPreviewSection = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
+        {/* Reset button for debugging
+        <div className="text-center mb-4">
+          <button 
+            onClick={() => {
+              console.log('🔄 Resetting recipe images...')
+              setImageErrors({})
+            }}
+            className="text-xs bg-gray-200 hover:bg-gray-300 text-gray-600 px-3 py-1 rounded opacity-50 hover:opacity-100 transition-opacity"
+            title="Reset imágenes recetas"
+          >
+            🔄 Reset Imágenes
+          </button>
+        </div> */}
+
         {/* CTA Button */}
         <div className="text-center">
-          <button className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base md:text-lg px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-200">
-            ¡QUIERO LAS RECETAS!
-          </button>
+          <motion.button
+            whileHover={{ 
+              scale: 1.1,
+              boxShadow: "0 25px 50px rgba(34, 197, 94, 0.4)"
+            }}
+            whileTap={{ scale: 0.95 }}
+            animate={{
+              scale: [1, 1.08, 1],
+            }}
+            transition={{
+              scale: {
+                duration: 1.2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }
+            }}
+            className="relative bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:from-green-500 hover:via-green-600 hover:to-green-700 text-white font-bold text-base md:text-lg px-8 py-4 rounded-full shadow-2xl transition-all duration-300 border-2 border-green-300/50 overflow-hidden"
+          >
+            {/* Glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-green-300/20 via-green-400/20 to-green-500/20 rounded-full blur-xl opacity-75"></div>
+            
+            {/* Button content */}
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              🍳 ¡QUIERO LAS RECETAS!
+            </span>
+            
+            {/* Animated shine effect */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+              animate={{
+                x: ['-100%', '100%']
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatDelay: 3,
+                ease: "easeInOut"
+              }}
+            />
+          </motion.button>
         </div>
+
+        {/* Status indicator */}
+        {Object.keys(imageErrors).length > 0 && (
+          <div className="text-center mt-4 text-xs text-gray-500 opacity-50">
+            ⚠️ {Object.keys(imageErrors).length} imágenes de recetas usando placeholder
+          </div>
+        )}
       </div>
     </section>
   )
