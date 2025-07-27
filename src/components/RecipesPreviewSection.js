@@ -10,10 +10,10 @@ const RecipesPreviewSection = () => {
       id: 1,
       image: "/images/breakfast-12.webp",
       fallbacks: ["/images/breakfast-12.png", "/images/breakfast-12.jpg"],
-      title: "CAFÉ DE FRIGIDEIRA",
-      subtitle: "COM OVOS E FRIOS",
+      title: "HUEVOS AL SARTÉN",
+      subtitle: "CON CARNES FRÍAS",
       time: "10 MINUTOS",
-      calories: "165 KCAL/DOSE",
+      calories: "165 KCAL/PORCIÓN",
       placeholder: "🍳",
       bgColor: "from-amber-100 to-orange-100"
     },
@@ -22,9 +22,9 @@ const RecipesPreviewSection = () => {
       image: "/images/breakfast-3.webp",
       fallbacks: ["/images/breakfast-3.png", "/images/breakfast-3.jpg"],
       title: "PIZZA RÁPIDA",
-      subtitle: "DE FRIGIDEIRA",
+      subtitle: "AL SARTÉN",
       time: "8 MINUTOS",
-      calories: "287 KCAL/DOSE",
+      calories: "287 KCAL/PORCIÓN",
       placeholder: "🍕",
       bgColor: "from-red-100 to-orange-100"
     },
@@ -32,10 +32,10 @@ const RecipesPreviewSection = () => {
       id: 3,
       image: "/images/breakfast-9.webp",
       fallbacks: ["/images/breakfast-9.png", "/images/breakfast-9.jpg"],
-      title: "PANQUECA FIT",
-      subtitle: "DE BANANA",
+      title: "PANQUEQUE FIT",
+      subtitle: "DE PLÁTANO",
       time: "5 MINUTOS",
-      calories: "138 KCAL/DOSE",
+      calories: "138 KCAL/PORCIÓN",
       placeholder: "🥞",
       bgColor: "from-yellow-100 to-amber-100"
     },
@@ -43,10 +43,10 @@ const RecipesPreviewSection = () => {
       id: 4,
       image: "/images/breakfast-11.webp",
       fallbacks: ["/images/breakfast-11.png", "/images/breakfast-11.jpg"],
-      title: "OMELETE DE FRIOS",
-      subtitle: "TOSTADA",
+      title: "OMELETTE DE CARNES FRÍAS",
+      subtitle: "TOSTADO",
       time: "7 MINUTOS",
-      calories: "175 KCAL/DOSE",
+      calories: "175 KCAL/PORCIÓN",
       placeholder: "🧈",
       bgColor: "from-green-100 to-yellow-100"
     },
@@ -55,9 +55,9 @@ const RecipesPreviewSection = () => {
       image: "/images/breakfast-2.webp",
       fallbacks: ["/images/breakfast-2.png", "/images/breakfast-2.jpg"],
       title: "SMOOTHIE BOWL",
-      subtitle: "PROTEICO",
+      subtitle: "DE PROTEÍNA",
       time: "3 MINUTOS",
-      calories: "220 KCAL/DOSE",
+      calories: "220 KCAL/PORCIÓN",
       placeholder: "🍓",
       bgColor: "from-pink-100 to-purple-100"
     }
@@ -184,7 +184,7 @@ const RecipesPreviewSection = () => {
 
         {/* CTA Button */}
         <div className="text-center">
-          <motion.button
+                    <motion.button
             whileHover={{ 
               scale: 1.1,
               boxShadow: "0 25px 50px rgba(34, 197, 94, 0.4)"
@@ -200,7 +200,15 @@ const RecipesPreviewSection = () => {
                 ease: "easeInOut"
               }
             }}
-            className="relative bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:from-green-500 hover:via-green-600 hover:to-green-700 text-white font-bold text-base md:text-lg px-8 py-4 rounded-full shadow-2xl transition-all duration-300 border-2 border-green-300/50 overflow-hidden"
+            onClick={() => {
+              const finalCTASection = document.querySelector('[data-section="final-cta"]') || document.getElementById('final-cta-section')
+              if (finalCTASection) {
+                finalCTASection.scrollIntoView({ behavior: 'smooth', block: 'center' })
+              } else {
+                console.warn('Final CTA section not found')
+              }
+            }}
+            className="relative bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:from-green-500 hover:via-green-600 hover:to-green-700 text-white font-bold text-base md:text-lg px-8 py-4 rounded-full shadow-2xl transition-all duration-300 border-2 border-green-300/50 overflow-hidden cursor-pointer"
           >
             {/* Glow effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-green-300/20 via-green-400/20 to-green-500/20 rounded-full blur-xl opacity-75"></div>

@@ -50,10 +50,10 @@ const AboutSection = () => {
           {/* Content */}
           <div className="w-full lg:w-1/2 text-center lg:text-left">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-              CARDÁPIO FEITO
+              MENÚ CREADO
             </h2>
             <h3 className="text-2xl md:text-3xl font-bold text-orange-300 mb-6">
-              PELA NUTRICIONISTA<br />
+              POR LA NUTRIÓLOGA<br />
               MARÍA AGUIAR
             </h3>
             

@@ -32,10 +32,10 @@ const HeroSection = () => {
             </span>
             <br />
             <span className="text-gray-700">
-              DE NUTRI 
+              SALUDABLES
             </span>
             <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
-              (CON SABOR)
+              &nbsp;(Y DELICIOSOS)
             </span>
           </motion.h1>
           
@@ -45,8 +45,8 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Recetas de bajas calorías creadas por la nutri 
-            <span className="font-semibold text-green-600"> María Aguiar</span>, 
+            Recetas bajas en calorías creadas por la nutrióloga
+            <span className="font-semibold text-emerald-600"> María Aguiar</span>, 
             con sabor delicioso de verdad.
           </motion.p>
         </motion.div>
@@ -84,10 +84,18 @@ const HeroSection = () => {
                 ease: "easeInOut"
               }
             }}
-            className="relative bg-green-500 hover:from-green-500 hover:via-green-600 hover:to-green-700 text-white font-bold text-base md:text-lg px-8 py-4 rounded-full shadow-2xl transition-all duration-300 border-2 border-green-300/50 overflow-hidden"
+            onClick={() => {
+              const finalCTASection = document.querySelector('[data-section="final-cta"]') || document.getElementById('final-cta-section')
+              if (finalCTASection) {
+                finalCTASection.scrollIntoView({ behavior: 'smooth', block: 'center' })
+              } else {
+                console.warn('Final CTA section not found')
+              }
+            }}
+            className="relative bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:from-green-500 hover:via-green-600 hover:to-green-700 text-white font-bold text-base md:text-lg px-8 py-4 rounded-full shadow-2xl transition-all duration-300 border-2 border-green-300/50 overflow-hidden cursor-pointer"
           >
             {/* Glow effect */}
-            <div className="absolute inset-0 rounded-full blur-xl opacity-75"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-green-300/20 via-green-400/20 to-green-500/20 rounded-full blur-xl opacity-75"></div>
             
             {/* Button content */}
             <span className="relative z-10 flex items-center justify-center gap-2">
@@ -117,54 +125,6 @@ const HeroSection = () => {
           >
             ✨ Acesso imediato • 📱 Para celular e computador
           </motion.div>
-        </motion.div>
-
-        {/* Floating elements */}
-        <motion.div
-          animate={{ 
-            y: [0, -6, 0],
-            rotate: [0, 2, 0]
-          }}
-          transition={{ 
-            duration: 4,
-            repeat: Infinity,
-            repeatType: "reverse"
-          }}
-          className="absolute top-12 left-6 text-2xl opacity-20"
-        >
-          🥞
-        </motion.div>
-        
-        <motion.div
-          animate={{ 
-            y: [0, -8, 0],
-            rotate: [0, -2, 0]
-          }}
-          transition={{ 
-            duration: 5,
-            repeat: Infinity,
-            repeatType: "reverse",
-            delay: 1
-          }}
-          className="absolute top-14 right-12 text-xl opacity-20"
-        >
-          🥑
-        </motion.div>
-        
-        <motion.div
-          animate={{ 
-            y: [0, -5, 0],
-            rotate: [0, 1, 0]
-          }}
-          transition={{ 
-            duration: 6,
-            repeat: Infinity,
-            repeatType: "reverse",
-            delay: 2
-          }}
-          className="absolute bottom-12 left-12 text-xl opacity-20"
-        >
-          🍓
         </motion.div>
       </div>
     </section>

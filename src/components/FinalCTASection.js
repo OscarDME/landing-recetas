@@ -1,70 +1,88 @@
+'use client'
+
+import { useState } from 'react'
+import Image from 'next/image'
+
 const FinalCTASection = () => {
+  const [imageError, setImageError] = useState(false)
+
+  const handleImageError = () => {
+    console.warn('Error loading product mockup image, showing placeholder')
+    setImageError(true)
+  }
+
   return (
-    <section className="bg-green-600 py-16 md:py-20">
+    <section className="bg-green-600 py-16 md:py-20" data-section="final-cta" id="final-cta-section">
       <div className="container mx-auto px-4 max-w-lg">
         {/* Card Container */}
         <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-8 shadow-2xl">
           {/* Product Image */}
           <div className="text-center mb-6">
             <div className="inline-block">
-              <img 
-                src="/images/product-mockup.png"
-                alt="200 Desayunos de Nutri - App en dispositivos móviles"
-                className="w-64 h-auto mx-auto"
-              />
+              {imageError ? (
+                // Placeholder si la imagen no carga
+                <div className="w-64 h-80 mx-auto bg-gradient-to-br from-green-100 to-green-200 rounded-2xl flex items-center justify-center shadow-lg">
+                  <div className="text-center text-green-700">
+                    <div className="text-6xl mb-4">📱</div>
+                    <div className="text-4xl mb-2">🍳📖</div>
+                    <p className="text-sm font-medium">Recetario de Desayunos</p>
+                  </div>
+                </div>
+              ) : (
+                <Image
+                  src="/images/product-mockup2.webp" // Se mantiene la imagen original
+                  alt="200 Desayunos de Nutri - App en dispositivos móviles"
+                  width={356}
+                  height={420}
+                  className="mx-auto"
+                  onError={handleImageError}
+                  quality={90}
+                />
+              )}
             </div>
           </div>
 
           {/* Title */}
           <div className="text-center mb-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-emerald-700 mb-4">
-              200 DESAYUNOS
+            <h2 className="text-2xl md:text-3xl font-bold text-green-700 mb-4">
+              200 DESAYUNOS SALUDABLES (Y DELICIOSOS)®
             </h2>
-            <h3 className="text-2xl md:text-3xl font-bold text-emerald-700 mb-4">
-              DE NUTRI (CON SABOR)®
-            </h3>
           </div>
 
           {/* Features */}
           <div className="text-center mb-6 space-y-2">
             <p className="text-slate-700 font-medium">
+              + COMIDAS COMPLETAS FIT
+            </p>
+            <p className="text-slate-700 font-medium">
               + POSTRES SIN AZÚCAR
             </p>
             <p className="text-slate-700 font-medium">
-              + PANES SIN GLUTEN
-            </p>
-            <p className="text-slate-700 font-medium">
-              + ENSALADAS Y SALSAS
+              + JUGOS DETOX
             </p>
           </div>
 
           {/* Pricing */}
           <div className="text-center mb-6">
             <p className="text-slate-600 text-lg line-through mb-2">
-              De $32.35 ...
+              De $24.99 USD
             </p>
-            <p className="text-4xl md:text-5xl font-bold text-emerald-600 mb-2">
-              por 5x de
-            </p>
-            <p className="text-4xl md:text-5xl font-bold text-emerald-600 mb-3">
-              $5.39
-            </p>
-            <p className="text-slate-600 text-lg">
-              O $26.95 A LA VISTA
+            <p className="text-4xl md:text-5xl font-bold text-green-600 mb-3">
+              por sólo $5.99 USD
             </p>
           </div>
 
           {/* CTA Button */}
           <div className="text-center mb-4">
-            <button className="w-full bg-green-500 hover:bg-emerald-700 text-white font-bold text-xl py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200">
-              COMPRAR AHORA!
+            <button className="w-full bg-green-500 hover:bg-green-700 text-white font-bold text-xl py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200">
+              ¡COMPRAR AHORA!
             </button>
           </div>
 
           {/* Urgency Text */}
           <div className="text-center">
             <p className="text-red-600 font-bold text-sm">
-              **OFERTA EXPIRA HOY**
+              <strong>LA OFERTA TERMINA HOY</strong>
             </p>
           </div>
         </div>

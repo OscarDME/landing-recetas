@@ -173,18 +173,6 @@ const ImageCarousel = () => {
 
   return (
     <div className="relative max-w-5xl mx-auto overflow-hidden">
-      {/* Botón de debug/reset */}
-      <button 
-        onClick={() => {
-          console.log('🔄 Resetting carousel...')
-          setImageErrors({})
-        }}
-        className="absolute top-0 right-0 z-20 bg-green-500 hover:bg-green-600 text-white px-2 py-1 text-xs rounded-bl opacity-50 hover:opacity-100 transition-opacity"
-        title="Reset carrusel"
-      >
-        🔄
-      </button>
-
       {/* CSS-only Infinite Carousel */}
       <div className="carousel-container">
         <div className="carousel-track">
