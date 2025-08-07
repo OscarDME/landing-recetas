@@ -1,18 +1,22 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import Image from 'next/image'
+import { useState } from "react";
+import Image from "next/image";
 
 const FinalCTASection = () => {
-  const [imageError, setImageError] = useState(false)
+  const [imageError, setImageError] = useState(false);
 
   const handleImageError = () => {
-    console.warn('Error loading product mockup image, showing placeholder')
-    setImageError(true)
-  }
+    console.warn("Error loading product mockup image, showing placeholder");
+    setImageError(true);
+  };
 
   return (
-    <section className="bg-green-600 py-16 md:py-20" data-section="final-cta" id="final-cta-section">
+    <section
+      className="bg-green-600 py-16 md:py-20"
+      data-section="final-cta"
+      id="final-cta-section"
+    >
       <div className="container mx-auto px-4 max-w-lg">
         {/* Card Container */}
         <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-8 shadow-2xl">
@@ -25,7 +29,9 @@ const FinalCTASection = () => {
                   <div className="text-center text-green-700">
                     <div className="text-6xl mb-4">📱</div>
                     <div className="text-4xl mb-2">🍳📖</div>
-                    <p className="text-sm font-medium">Recetario de Desayunos</p>
+                    <p className="text-sm font-medium">
+                      Recetario de Desayunos
+                    </p>
                   </div>
                 </div>
               ) : (
@@ -54,12 +60,8 @@ const FinalCTASection = () => {
             <p className="text-slate-700 font-medium">
               + COMIDAS COMPLETAS FIT
             </p>
-            <p className="text-slate-700 font-medium">
-              + POSTRES SIN AZÚCAR
-            </p>
-            <p className="text-slate-700 font-medium">
-              + JUGOS DETOX
-            </p>
+            <p className="text-slate-700 font-medium">+ POSTRES SIN AZÚCAR</p>
+            <p className="text-slate-700 font-medium">+ JUGOS DETOX</p>
           </div>
 
           {/* Pricing */}
@@ -68,15 +70,20 @@ const FinalCTASection = () => {
               De $24.99 USD
             </p>
             <p className="text-4xl md:text-5xl font-bold text-green-600 mb-3">
-              por sólo $5.99 USD
+              por sólo $5.47 USD
             </p>
           </div>
 
           {/* CTA Button */}
           <div className="text-center mb-4">
-            <button className="w-full bg-green-500 hover:bg-green-700 text-white font-bold text-xl py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200">
+            <a
+              href="https://pay.hotmart.com/H101227785A?checkoutMode=10"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full text-center bg-green-500 hover:bg-green-700 text-white font-bold text-xl py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+            >
               ¡COMPRAR AHORA!
-            </button>
+            </a>
           </div>
 
           {/* Urgency Text */}
@@ -88,7 +95,7 @@ const FinalCTASection = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default FinalCTASection
+export default FinalCTASection;

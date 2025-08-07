@@ -7,35 +7,35 @@ const FAQSection = () => {
   const faqs = [
     {
       question: "¿Cómo recibo el material?",
-      answer: "Así que usted coloque sus datos y finalice su compra, vamos a enviar un e-mail con todas las recetas. Por eso es importante inserir el e-mail y número correcto en la hora de finalizar la compra."
+      answer: "Una vez que completes tu compra, recibirás un correo electrónico con acceso inmediato a todas las recetas. Asegúrate de ingresar correctamente tu correo y número al finalizar la compra."
     },
     {
-      question: "¿Las recetas tienen mismo sabor de verdad?",
-      answer: "¡Sí! O maior foco da nutri María Aguiar foi unir saúde com sabor de verdade. Nada de comida sem gosto... São receitas realmente gostosas, testadas e aprovadas."
+      question: "¿Las recetas realmente tienen buen sabor?",
+      answer: "¡Sí! La nutricionista Laura Gómez creó cada receta con el objetivo de unir salud y sabor real. Nada de comidas insípidas: son recetas deliciosas, probadas y aprobadas."
     },
     {
       question: "¿Son recetas saludables?",
-      answer: "Todas são saudáveis, equilibradas e pensadas para oferecer os nutrientes e vitaminas que seu corpo precisa para começar bem o dia."
+      answer: "Sí. Todas las recetas fueron desarrolladas para ser equilibradas y ofrecer los nutrientes, vitaminas y energía que tu cuerpo necesita para empezar el día."
     },
     {
       question: "¿Las recetas sirven para toda la familia?",
-      answer: "Com certeza! São ideias que agradam adultos e crianças, com ingredientes acessíveis e muito sabor."
+      answer: "Totalmente. Son opciones que gustan tanto a adultos como a niños, con ingredientes simples y sabor garantizado."
     },
     {
-      question: "¿Las recetas son fáciles de hacer?",
-      answer: "Sim! A maioria das receitas é simples, com ingredientes acessíveis e instruções claras, perfeitas para o dia a dia corrido."
+      question: "¿Las recetas son fáciles de preparar?",
+      answer: "Sí. La mayoría se prepara en menos de 15 minutos, con pasos sencillos e ingredientes accesibles. ¡Perfectas para el día a día!"
     },
     {
-      question: "¿Necesito saber cocinar para aprovechar?",
-      answer: "Não! As receitas foram pensadas para todos os níveis de habilidade na cozinha — inclusive iniciantes."
+      question: "¿Necesito saber cocinar para aprovecharlas?",
+      answer: "No hace falta. Las recetas están pensadas para todos los niveles, incluso si nunca cocinaste antes. ¡Son súper amigables!"
     },
     {
-      question: "¿Tienen lista de ingredientes accesibles?",
-      answer: "Sim. A nutri priorizou ingredientes que você encontra com facilidade em mercados comuns, sem precisar de produtos caros ou raros."
+      question: "¿Usan ingredientes fáciles de conseguir?",
+      answer: "Sí. Todas las recetas fueron creadas con ingredientes comunes que podés encontrar en cualquier supermercado."
     },
     {
-      question: "¿Voy a necesitar batidora o utensilios especiales?",
-      answer: "Não! As receitas foram pensadas para o dia a dia, usando utensílios simples que você já tem em casa, como colher, garfo, liquidificador e frigideira."
+      question: "¿Necesito batidora o utensilios especiales?",
+      answer: "Para nada. Solo necesitarás lo básico: una licuadora, sartén y utensilios comunes de cocina. Nada complicado ni profesional."
     }
   ]
 
@@ -103,7 +103,7 @@ const FAQSection = () => {
 
         {/* Final CTA */}
         <div className="text-center mt-12">
-                   <motion.button
+          <motion.button
             whileHover={{ 
               scale: 1.1,
               boxShadow: "0 25px 50px rgba(34, 197, 94, 0.4)"
@@ -129,15 +129,10 @@ const FAQSection = () => {
             }}
             className="relative bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:from-green-500 hover:via-green-600 hover:to-green-700 text-white font-bold text-base md:text-lg px-8 py-4 rounded-full shadow-2xl transition-all duration-300 border-2 border-green-300/50 overflow-hidden cursor-pointer"
           >
-            {/* Glow effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-green-300/20 via-green-400/20 to-green-500/20 rounded-full blur-xl opacity-75"></div>
-            
-            {/* Button content */}
             <span className="relative z-10 flex items-center justify-center gap-2">
               🍳 ¡QUIERO LAS RECETAS!
             </span>
-            
-            {/* Animated shine effect */}
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
               animate={{

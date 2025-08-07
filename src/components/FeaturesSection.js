@@ -1,36 +1,36 @@
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
 
 const FeaturesSection = () => {
   const features = [
     {
       icon: "✅",
-      text: "Recetas de hasta 350 calorías"
+      text: "Recetas con menos de 350 calorías",
     },
     {
       icon: "😋",
-      text: "Con sabores deliciosos de verdad"
+      text: "Con sabores realmente deliciosos",
     },
     {
       icon: "🥄",
-      text: "Con proteínas y vitaminas esenciales"
+      text: "Ricas en proteínas y vitaminas esenciales",
     },
     {
       icon: "⏰",
-      text: "Listas en 15 minutos"
+      text: "Listas en solo 15 minutos",
     },
     {
       icon: "🛒",
-      text: "Con ingredientes comunes"
+      text: "Hechas con ingredientes fáciles de conseguir",
     },
     {
       icon: "🍴",
-      text: "Use apenas liquidificador e geladeira"
+      text: "Solo necesitás licuadora y refrigerador",
     },
     {
       icon: "📋",
-      text: "Paso a paso de preparo"
-    }
-  ]
+      text: "Paso a paso detallado y fácil de seguir",
+    },
+  ];
 
   return (
     <section className="bg-green-600 py-12 md:py-16">
@@ -65,9 +65,9 @@ const FeaturesSection = () => {
         {/* CTA Button */}
         <div className="text-center">
           <motion.button
-            whileHover={{ 
+            whileHover={{
               scale: 1.1,
-              boxShadow: "0 25px 50px rgba(34, 197, 94, 0.4)"
+              boxShadow: "0 25px 50px rgba(34, 197, 94, 0.4)",
             }}
             whileTap={{ scale: 0.95 }}
             animate={{
@@ -77,45 +77,50 @@ const FeaturesSection = () => {
               scale: {
                 duration: 1.2,
                 repeat: Infinity,
-                ease: "easeInOut"
-              }
+                ease: "easeInOut",
+              },
             }}
             onClick={() => {
-              const finalCTASection = document.querySelector('[data-section="final-cta"]') || document.getElementById('final-cta-section')
+              const finalCTASection =
+                document.querySelector('[data-section="final-cta"]') ||
+                document.getElementById("final-cta-section");
               if (finalCTASection) {
-                finalCTASection.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                finalCTASection.scrollIntoView({
+                  behavior: "smooth",
+                  block: "center",
+                });
               } else {
-                console.warn('Final CTA section not found')
+                console.warn("Final CTA section not found");
               }
             }}
             className="relative bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:from-green-500 hover:via-green-600 hover:to-green-700 text-white font-bold text-base md:text-lg px-8 py-4 rounded-full shadow-2xl transition-all duration-300 border-2 border-green-300/50 overflow-hidden cursor-pointer"
           >
             {/* Glow effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-green-300/20 via-green-400/20 to-green-500/20 rounded-full blur-xl opacity-75"></div>
-            
+
             {/* Button content */}
             <span className="relative z-10 flex items-center justify-center gap-2">
               🍳 ¡QUIERO LAS RECETAS!
             </span>
-            
+
             {/* Animated shine effect */}
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
               animate={{
-                x: ['-100%', '100%']
+                x: ["-100%", "100%"],
               }}
               transition={{
                 duration: 2,
                 repeat: Infinity,
                 repeatDelay: 3,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             />
           </motion.button>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default FeaturesSection
+export default FeaturesSection;

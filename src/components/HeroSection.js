@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import ImageCarousel from './ImageCarousel'
+import { motion } from "framer-motion";
+import ImageCarousel from "./ImageCarousel";
 
 const HeroSection = () => {
   return (
@@ -21,7 +21,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-3"
         >
-          <motion.h1 
+          <motion.h1
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-3 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -31,23 +31,16 @@ const HeroSection = () => {
               200 DESAYUNOS
             </span>
             <br />
-            <span className="text-gray-700">
-              SALUDABLES
-            </span>
+            <span className="text-gray-700">SALUDABLES</span>
             <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
               &nbsp;(Y DELICIOSOS)
             </span>
           </motion.h1>
-          
-          <motion.p 
-            className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Recetas bajas en calorías creadas por la nutrióloga
-            <span className="font-semibold text-emerald-600"> María Aguiar</span>, 
-            con sabor delicioso de verdad.
+
+          <motion.p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Recetas equilibradas, bajas en calorías, creadas por la nutrióloga
+            <span className="font-semibold text-emerald-600"> Laura Gómez</span>
+            , ideales para empezar tu día con energía y mucho sabor.
           </motion.p>
         </motion.div>
 
@@ -69,9 +62,9 @@ const HeroSection = () => {
           className="text-center"
         >
           <motion.button
-            whileHover={{ 
+            whileHover={{
               scale: 1.1,
-              boxShadow: "0 25px 50px rgba(34, 197, 94, 0.4)"
+              boxShadow: "0 25px 50px rgba(34, 197, 94, 0.4)",
             }}
             whileTap={{ scale: 0.95 }}
             animate={{
@@ -81,42 +74,47 @@ const HeroSection = () => {
               scale: {
                 duration: 1.2,
                 repeat: Infinity,
-                ease: "easeInOut"
-              }
+                ease: "easeInOut",
+              },
             }}
             onClick={() => {
-              const finalCTASection = document.querySelector('[data-section="final-cta"]') || document.getElementById('final-cta-section')
+              const finalCTASection =
+                document.querySelector('[data-section="final-cta"]') ||
+                document.getElementById("final-cta-section");
               if (finalCTASection) {
-                finalCTASection.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                finalCTASection.scrollIntoView({
+                  behavior: "smooth",
+                  block: "center",
+                });
               } else {
-                console.warn('Final CTA section not found')
+                console.warn("Final CTA section not found");
               }
             }}
             className="relative bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:from-green-500 hover:via-green-600 hover:to-green-700 text-white font-bold text-base md:text-lg px-8 py-4 rounded-full shadow-2xl transition-all duration-300 border-2 border-green-300/50 overflow-hidden cursor-pointer"
           >
             {/* Glow effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-green-300/20 via-green-400/20 to-green-500/20 rounded-full blur-xl opacity-75"></div>
-            
+
             {/* Button content */}
             <span className="relative z-10 flex items-center justify-center gap-2">
               🍳 ¡QUIERO LAS RECETAS!
             </span>
-            
+
             {/* Animated shine effect */}
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
               animate={{
-                x: ['-100%', '100%']
+                x: ["-100%", "100%"],
               }}
               transition={{
                 duration: 2,
                 repeat: Infinity,
                 repeatDelay: 3,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             />
           </motion.button>
-          
+
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -128,7 +126,7 @@ const HeroSection = () => {
         </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;
