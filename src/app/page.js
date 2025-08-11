@@ -12,11 +12,17 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import GuaranteeSection from "@/components/GuaranteeSection";
 import FAQSection from "@/components/FAQSection";
-import { pageview, track } from "./fpixel";
+import { track } from "./fpixel";
 
 export default function Home() {
   useEffect(() => {
-    track("ViewContent"); // Vista de oferta
+    // Dispara PageView SOLO una vez
+    if (typeof window !== "undefined" && !window.__fbPageViewFired) {
+      window.__fbPageViewFired = true;
+      if (window.fbq) window.fbq("track", "PageView");
+    }
+    // Marca que vieron la oferta
+    track("ViewContent");
   }, []);
 
   return (

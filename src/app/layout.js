@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body className={inter.className}>
-        {/* Meta Pixel (hardcodeado con tu ID) */}
+        {/* Meta Pixel: init UNA sola vez (sin PageView aquí) */}
         <Script id="fbq-init" strategy="afterInteractive">
           {`
             (function () {
@@ -34,7 +34,6 @@ export default function RootLayout({ children }) {
               }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
               fbq('init', '1394486948289979');
-              fbq('track', 'PageView');
             })();
           `}
         </Script>
