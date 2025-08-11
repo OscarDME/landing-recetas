@@ -1,18 +1,24 @@
-'use client'
+"use client";
 
-import HeroSection from '@/components/HeroSection'
-import FeaturesSection from '@/components/FeaturesSection'
-import RecipesPreviewSection from '@/components/RecipesPreviewSection'
-import AboutSection from '@/components/AboutSection'
-import BonusSection from '@/components/BonusSection'
-import ProblemsSection from '@/components/ProblemsSection'
-import BenefitsSection from '@/components/BenefitsSection'
-import TestimonialsSection from '@/components/TestimonialsSection'
-import FinalCTASection from '@/components/FinalCTASection'
-import GuaranteeSection from '@/components/GuaranteeSection'
-import FAQSection from '@/components/FAQSection'
+import { useEffect } from "react";
+import HeroSection from "@/components/HeroSection";
+import FeaturesSection from "@/components/FeaturesSection";
+import RecipesPreviewSection from "@/components/RecipesPreviewSection";
+import AboutSection from "@/components/AboutSection";
+import BonusSection from "@/components/BonusSection";
+import ProblemsSection from "@/components/ProblemsSection";
+import BenefitsSection from "@/components/BenefitsSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import FinalCTASection from "@/components/FinalCTASection";
+import GuaranteeSection from "@/components/GuaranteeSection";
+import FAQSection from "@/components/FAQSection";
+import { pageview, track } from "./fpixel";
 
 export default function Home() {
+  useEffect(() => {
+    track("ViewContent"); // Vista de oferta
+  }, []);
+
   return (
     <main className="min-h-screen">
       <HeroSection />
@@ -27,5 +33,5 @@ export default function Home() {
       <GuaranteeSection />
       <FAQSection />
     </main>
-  )
+  );
 }

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { track } from "@/app/fpixel";
 
 const FinalCTASection = () => {
   const [imageError, setImageError] = useState(false);
@@ -11,6 +12,21 @@ const FinalCTASection = () => {
     setImageError(true);
   };
 
+  const handleBuyClick = (e) => {
+    e.preventDefault();
+    try {
+      track("InitiateCheckout");
+    } catch {}
+    // pequeña espera para asegurar el ping del pixel antes de salir
+    setTimeout(() => {
+      window.open(
+        "https://pay.hotmart.com/H101227785A?checkoutMode=10",
+        "_blank",
+        "noopener,noreferrer"
+      );
+    }, 150);
+  };
+
   return (
     <section
       className="bg-green-600 py-16 md:py-20"
@@ -18,25 +34,20 @@ const FinalCTASection = () => {
       id="final-cta-section"
     >
       <div className="container mx-auto px-4 max-w-lg">
-        {/* Card Container */}
         <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-8 shadow-2xl">
-          {/* Product Image */}
           <div className="text-center mb-6">
             <div className="inline-block">
               {imageError ? (
-                // Placeholder si la imagen no carga
                 <div className="w-64 h-80 mx-auto bg-gradient-to-br from-green-100 to-green-200 rounded-2xl flex items-center justify-center shadow-lg">
                   <div className="text-center text-green-700">
                     <div className="text-6xl mb-4">📱</div>
                     <div className="text-4xl mb-2">🍳📖</div>
-                    <p className="text-sm font-medium">
-                      Recetario de Desayunos
-                    </p>
+                    <p className="text-sm font-medium">Recetario de Desayunos</p>
                   </div>
                 </div>
               ) : (
                 <Image
-                  src="/images/product-mockup2.webp" // Se mantiene la imagen original
+                  src="/images/product-mockup2.webp"
                   alt="200 Desayunos de Nutri - App en dispositivos móviles"
                   width={356}
                   height={420}
@@ -48,23 +59,18 @@ const FinalCTASection = () => {
             </div>
           </div>
 
-          {/* Title */}
           <div className="text-center mb-6">
             <h2 className="text-2xl md:text-3xl font-bold text-green-700 mb-4">
               200 DESAYUNOS SALUDABLES (Y DELICIOSOS)®
             </h2>
           </div>
 
-          {/* Features */}
           <div className="text-center mb-6 space-y-2">
-            <p className="text-slate-700 font-medium">
-              + COMIDAS COMPLETAS FIT
-            </p>
+            <p className="text-slate-700 font-medium">+ COMIDAS COMPLETAS FIT</p>
             <p className="text-slate-700 font-medium">+ POSTRES SIN AZÚCAR</p>
             <p className="text-slate-700 font-medium">+ JUGOS DETOX</p>
           </div>
 
-          {/* Pricing */}
           <div className="text-center mb-6">
             <p className="text-slate-600 text-lg line-through mb-2">
               De $24.99 USD
@@ -74,19 +80,16 @@ const FinalCTASection = () => {
             </p>
           </div>
 
-          {/* CTA Button */}
           <div className="text-center mb-4">
             <a
               href="https://pay.hotmart.com/H101227785A?checkoutMode=10"
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={handleBuyClick}
               className="block w-full text-center bg-green-500 hover:bg-green-700 text-white font-bold text-xl py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
             >
               ¡COMPRAR AHORA!
             </a>
           </div>
 
-          {/* Urgency Text */}
           <div className="text-center">
             <p className="text-red-600 font-bold text-sm">
               <strong>LA OFERTA TERMINA HOY</strong>
