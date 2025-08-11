@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { track } from "@/app/fpixel";
 
 const FinalCTASection = () => {
   const [imageError, setImageError] = useState(false);
@@ -14,19 +13,12 @@ const FinalCTASection = () => {
 
   const handleBuyClick = (e) => {
     e.preventDefault();
-    try {
-      track("InitiateCheckout");
-    } catch (err) {
-      console.error("Error tracking InitiateCheckout", err);
-    }
-    // Espera breve para enviar el evento antes de abrir Hotmart
-    setTimeout(() => {
-      window.open(
-        "https://pay.hotmart.com/H101227785A?checkoutMode=10",
-        "_blank",
-        "noopener,noreferrer"
-      );
-    }, 150);
+    // Solo abrir el checkout de Hotmart, sin pixel aquí
+    window.open(
+      "https://pay.hotmart.com/H101227785A?checkoutMode=10",
+      "_blank",
+      "noopener,noreferrer"
+    );
   };
 
   return (
