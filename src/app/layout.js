@@ -17,23 +17,25 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body className={inter.className}>
-        
-        {/* Meta Pixel: carga única */}
-        <Script id="meta-pixel" strategy="afterInteractive">
+        {/* Meta Pixel (hardcodeado con tu ID) */}
+        <Script id="fbq-init" strategy="afterInteractive">
           {`
-            if (!window.fbq) {
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)
+            (function () {
+              if (window.__fbPixelInitialized) return;
+              window.__fbPixelInitialized = true;
+
+              !function(f,b,e,v,n,t,s){
+                if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                n.queue=[];t=b.createElement(e);t.async=!0;
+                t.src=v;s=b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t,s)
               }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-              
-              fbq('init', '${process.env.NEXT_PUBLIC_FB_PIXEL_ID}');
+
+              fbq('init', '1444390510140849');
               fbq('track', 'PageView');
-            }
+            })();
           `}
         </Script>
 
@@ -42,7 +44,7 @@ export default function RootLayout({ children }) {
             height="1"
             width="1"
             style={{ display: "none" }}
-            src={`https://www.facebook.com/tr?id=${process.env.NEXT_PUBLIC_FB_PIXEL_ID}&ev=PageView&noscript=1`}
+            src="https://www.facebook.com/tr?id=1394486948289979&ev=PageView&noscript=1"
             alt=""
           />
         </noscript>
