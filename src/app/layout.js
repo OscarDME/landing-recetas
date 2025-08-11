@@ -7,17 +7,12 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "La Receta del Dia",
   description: "Recetas de desayunos saludables y deliciosos",
-  icons: {
-    icon:
-      "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%2322c55e'/></svg>",
-  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body className={inter.className}>
-        {/* Meta Pixel: init UNA sola vez (sin PageView aquí) */}
         <Script id="fbq-init" strategy="afterInteractive">
           {`
             (function () {
@@ -33,21 +28,20 @@ export default function RootLayout({ children }) {
                 s.parentNode.insertBefore(t,s)
               }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
-              fbq('init', '1394486948289979');
+              fbq('init', '1394486948289979'); // EL ÚNICO ID
+
+              // Parche anti-duplicado: bloquea segundos PageView
+              const _fbq = fbq;
+              window.fbq = function(){
+                if (arguments && arguments[0] === 'track' && arguments[1] === 'PageView') {
+                  if (window.__pvFired) return; // ignora repetidos
+                  window.__pvFired = true;
+                }
+                return _fbq.apply(this, arguments);
+              };
             })();
           `}
         </Script>
-
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=1394486948289979&ev=PageView&noscript=1"
-            alt=""
-          />
-        </noscript>
-
         {children}
       </body>
     </html>

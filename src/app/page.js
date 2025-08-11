@@ -16,12 +16,6 @@ import { track } from "./fpixel";
 
 export default function Home() {
   useEffect(() => {
-    // Dispara PageView SOLO una vez
-    if (typeof window !== "undefined" && !window.__fbPageViewFired) {
-      window.__fbPageViewFired = true;
-      if (window.fbq) window.fbq("track", "PageView");
-    }
-    // Marca que vieron la oferta
     track("ViewContent");
   }, []);
 
