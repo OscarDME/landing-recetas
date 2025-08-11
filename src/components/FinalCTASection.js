@@ -16,8 +16,10 @@ const FinalCTASection = () => {
     e.preventDefault();
     try {
       track("InitiateCheckout");
-    } catch {}
-    // pequeña espera para asegurar el ping del pixel antes de salir
+    } catch (err) {
+      console.error("Error tracking InitiateCheckout", err);
+    }
+    // Espera breve para enviar el evento antes de abrir Hotmart
     setTimeout(() => {
       window.open(
         "https://pay.hotmart.com/H101227785A?checkoutMode=10",
@@ -35,6 +37,8 @@ const FinalCTASection = () => {
     >
       <div className="container mx-auto px-4 max-w-lg">
         <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-8 shadow-2xl">
+          
+          {/* Imagen del producto */}
           <div className="text-center mb-6">
             <div className="inline-block">
               {imageError ? (
@@ -59,18 +63,21 @@ const FinalCTASection = () => {
             </div>
           </div>
 
+          {/* Título */}
           <div className="text-center mb-6">
             <h2 className="text-2xl md:text-3xl font-bold text-green-700 mb-4">
               200 DESAYUNOS SALUDABLES (Y DELICIOSOS)®
             </h2>
           </div>
 
+          {/* Características */}
           <div className="text-center mb-6 space-y-2">
             <p className="text-slate-700 font-medium">+ COMIDAS COMPLETAS FIT</p>
             <p className="text-slate-700 font-medium">+ POSTRES SIN AZÚCAR</p>
             <p className="text-slate-700 font-medium">+ JUGOS DETOX</p>
           </div>
 
+          {/* Precio */}
           <div className="text-center mb-6">
             <p className="text-slate-600 text-lg line-through mb-2">
               De $24.99 USD
@@ -80,6 +87,7 @@ const FinalCTASection = () => {
             </p>
           </div>
 
+          {/* Botón CTA */}
           <div className="text-center mb-4">
             <a
               href="https://pay.hotmart.com/H101227785A?checkoutMode=10"
@@ -90,11 +98,13 @@ const FinalCTASection = () => {
             </a>
           </div>
 
+          {/* Urgencia */}
           <div className="text-center">
             <p className="text-red-600 font-bold text-sm">
               <strong>LA OFERTA TERMINA HOY</strong>
             </p>
           </div>
+
         </div>
       </div>
     </section>
